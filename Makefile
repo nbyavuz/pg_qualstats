@@ -2,7 +2,7 @@ EXTENSION    = pg_qualstats
 EXTVERSION   = $(shell grep default_version $(EXTENSION).control | sed -e "s/default_version[[:space:]]*=[[:space:]]*'\([^']*\)'/\1/")
 TESTS        = $(wildcard test/sql/*.sql)
 REGRESS      = $(patsubst test/sql/%.sql,%,$(TESTS))
-REGRESS_OPTS = --inputdir=test
+REGRESS_OPTS = --temp-config=./pg_qualstats.conf --temp-instance=./tmp_check --inputdir=test
 MODULES      = $(patsubst %.c,%,$(wildcard *.c))
 PG_CONFIG    ?= pg_config
 
